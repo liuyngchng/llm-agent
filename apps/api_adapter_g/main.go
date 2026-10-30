@@ -71,7 +71,7 @@ func main() {
 	}
 	if logFile != nil {
 		defer logFile.Close()
-		setDefaultLogger(logFile)
+		setDefaultLogger(io.MultiWriter(logFile, os.Stderr))
 	} else {
 		setDefaultLogger(os.Stderr)
 	}
