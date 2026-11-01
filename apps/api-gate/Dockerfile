@@ -1,4 +1,4 @@
-# api_adapter_g Docker image
+# api-gate Docker image
 # Build: ./deploy/build.sh
 
 FROM ubuntu:24.04
@@ -12,11 +12,11 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 WORKDIR /opt/app
 
 # Copy the pre-built static Linux binary
-COPY api_adapter_linux_amd64 /opt/app/api_adapter_g
+COPY api-gate-linux-amd64 /opt/app/api-gate
 
 # Create logs directory (volume mount point)
 RUN mkdir -p /opt/app/logs
 
 EXPOSE 16001
 
-ENTRYPOINT ["./api_adapter_g"]
+ENTRYPOINT ["./api-gate"]

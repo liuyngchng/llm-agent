@@ -1,15 +1,15 @@
 #!/bin/bash
 # =============================================================================
-# api_adapter_g — Build
+# api-gate — Build
 #
 # Usage:
 #   ./deploy/build.sh            # build both binaries + Docker image
 #   ./deploy/build.sh bin        # build binaries only (Linux + Windows, no Docker)
 #
 # Outputs:
-#   api_adapter_linux_amd64        static ELF — run directly or via Docker
-#   api_adapter_windows_amd64.exe  standalone .exe — copy to Windows and run
-#   llm_api_adapter_g:1.1          Docker image (ubuntu:24.04)
+#   api-gate-linux-amd64        static ELF — run directly or via Docker
+#   api-gate-windows-amd64.exe  standalone .exe — copy to Windows and run
+#   api-gate:1.1                Docker image (ubuntu:24.04)
 #
 # To deploy the Docker container, use:  ./deploy/deploy.sh
 # =============================================================================
@@ -19,10 +19,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_DIR"
 
-APP="api_adapter_g"
-IMAGE="llm_${APP}:1.1"
-BIN_LINUX="api_adapter_linux_amd64"
-BIN_WIN="api_adapter_windows_amd64.exe"
+APP="api-gate"
+IMAGE="${APP}:1.1"
+BIN_LINUX="api-gate-linux-amd64"
+BIN_WIN="api-gate-windows-amd64.exe"
 
 MODE="${1:-all}"
 

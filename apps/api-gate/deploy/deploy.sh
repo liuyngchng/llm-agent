@@ -1,12 +1,12 @@
 #!/bin/bash
 # =============================================================================
-# api_adapter_g — Deploy (docker run only, no build)
+# api-gate — Deploy (docker run only, no build)
 #
 # Usage:
 #   ./deploy/deploy.sh
 #
 # Prerequisites:
-#   Docker image llm_api_adapter_g:1.1 must already exist (built via ./deploy/build.sh)
+#   Docker image api-gate:1.1 must already exist (built via ./deploy/build.sh)
 # =============================================================================
 set -euo pipefail
 
@@ -14,11 +14,11 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_DIR"
 
-APP="api_adapter_g"
-IMAGE="llm_${APP}:1.1"
-CONTAINER="${APP}_app"
+APP="api-gate"
+IMAGE="${APP}:1.1"
+CONTAINER="${APP}"
 
-HOST_CFG_DIR="${PROJECT_DIR}/cfg"
+HOST_CFG_DIR="${PROJECT_DIR}"
 HOST_LOGS_DIR="${PROJECT_DIR}/logs"
 
 echo "============================================"
@@ -35,7 +35,7 @@ if ! docker images --format '{{.Repository}}:{{.Tag}}' | grep -q "^${IMAGE}$"; t
 fi
 
 echo "=== [deploy] Preparing host directories ==="
-mkdir -p "${HOST_CFG_DIR}" "${HOST_LOGS_DIR}"
+mkdir -p "${HOST_LOGS_DIR}"
 
 # 检测配置文件，缺少则报错退出，不自动拷贝
 if [ ! -f "${HOST_CFG_DIR}/cfg.yml" ]; then
@@ -59,11 +59,11 @@ echo "=== [deploy] 启动容器 ==="
 docker run -dit --name "${CONTAINER}" \
   --security-opt seccomp=unconfined \
   --network llm_net \
-  -v "${HOST_CFG_DIR}:/opt/app/cfg" \
+  -v "${HOST_CFG_DIR}/cfg.yml:/opt/app/cfg.yml" \
   -v "${HOST_LOGS_DIR}:/opt/app/logs" \
   -p ${PORT}:${PORT} \
   -e TZ=Asia/Shanghai \
-  -e ADAPTER_CONFIG=/opt/app/cfg/cfg.yml \
+  -e ADAPTER_CONFIG=/opt/app/cfg.yml \
   "${IMAGE}"
 
 echo "容器 ${CONTAINER} 已启动"

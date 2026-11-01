@@ -11,7 +11,9 @@ sys:
 
 api:
   # OpenAI-compatible LLM API base URL
-  llm_api_uri: https://api.deepseek.com/v1
+  #llm_api_uri: https://api.deepseek.com
+  llm_api_uri: http://192.168.1.104:17001
+
 
   # OpenAI-compatible LLM API key
   llm_api_key: sk-123456
