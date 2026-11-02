@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# api_adapter_g — API smoke test
+# api-gate — API smoke test
 #
 # Usage:
 #   ./deploy/test.sh              # auto-detect port from cfg/cfg.yml
@@ -63,7 +63,7 @@ FAIL="${RED}FAIL${NC}"
 
 # =========================================================================
 echo "============================================"
-echo "  api_adapter_g — API Smoke Test"
+echo "  api-gate — API Smoke Test"
 echo "  Target: ${BASE_URL}"
 echo "  Model : ${MODEL_NAME}"
 echo "============================================"
