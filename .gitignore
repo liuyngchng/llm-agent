@@ -70,16 +70,10 @@ apps/asr/asr.db-shm
 apps/statistics_service/statistics.db
 
 # Go build artifacts (api_adapter_g)
-**/api_adapter_g/api_adapter_g
-**/api_adapter_g/api_adapter_go
-**/api_adapter_g/deploy/api_adapter_g_*
-**/api_adapter_g/api_adapter_g.exe
-**/api_adapter_g/api_adapter_linux_amd64
-**/api_adapter_g/api_adapter_windows_amd64.exe
+**/apps/api-gate/api-gate-win-amd64.exe
+**/apps/api-proxy/api-proxy-linux-amd64
+**/apps/api-proxy/api-proxy-win-amd64.exe
 
 # Go build artifacts (api_proxy)
-**/api_proxy/logs/
-**/api_proxy/api_proxy
-**/api_proxy/api_proxy_linux_amd64
-**/api_proxy/api_proxy.exe
-**/api_proxy/api_proxy_windows_amd64.exe
+**/api-proxy/logs/
+**/api-gate/logs/
